@@ -1,0 +1,17 @@
+[workspace]
+resolver = "2"
+members = ["crates/motion-core", "crates/motion-cli"]
+
+[workspace.package]
+version = "1.0.0"
+edition = "2021"
+license = "MIT"
+authors = ["Zigmoon"]
+description = "HOT MOTOR MOTION — moteur d'animation et outils natifs"
+
+# Aucune dépendance externe : le moteur lit et écrit son propre JSON. Un build
+# hors ligne fonctionne, et `cargo test` ne dépend d'aucun registre.
+[profile.release]
+opt-level = 3
+lto = "thin"
+strip = true

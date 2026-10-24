@@ -1,0 +1,45 @@
+---
+// Coquille de l'éditeur : l'application complète, servie sur /editor.
+// Le CSS, le thème et les scripts viennent du moteur (public/assets/motion),
+// copiés depuis index.html par scripts/sync-engine.mjs.
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'HOT MOTOR MOTION — Éditeur motion design',
+  description = 'Éditeur motion design temps réel : timeline, images clés, courbes, export WebM et lecteur autonome. 100 % local, sans compte.',
+} = Astro.props;
+---
+<!doctype html>
+<html lang="fr" class="theme-dark" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#121214" />
+    <meta name="application-name" content="HOT MOTOR MOTION" />
+    <meta name="robots" content="index,follow" />
+    <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site || 'https://app.zigmoon.com')} />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+
+    <!-- Thème avant le premier rendu (sombre par défaut), chargé tel quel -->
+    <script is:inline src="/assets/motion/js/theme.js"></script>
+
+    <link rel="stylesheet" href="/assets/motion/css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600;700&family=Fira+Code:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&family=Space+Mono:wght@400;700&family=Roboto+Mono:wght@400;500;600;700&family=Source+Code+Pro:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <slot name="head" />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

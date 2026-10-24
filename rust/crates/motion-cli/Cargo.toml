@@ -1,0 +1,14 @@
+[package]
+name = "motion-cli"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+description = "Ligne de commande HOT MOTOR MOTION : inspecter, valider, exporter"
+
+[[bin]]
+name = "motion-cli"
+path = "src/main.rs"
+
+[dependencies]
+motion-core = { path = "../motion-core" }

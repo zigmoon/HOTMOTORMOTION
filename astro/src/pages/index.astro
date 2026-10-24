@@ -1,0 +1,113 @@
+---
+import Base from '../layouts/Base.astro';
+
+const capabilities = [
+  {
+    icon: '◈',
+    title: 'Bibliothèque d’effets',
+    text: '36 presets courts, classés par intention : fondations, typographie, révélations, boucles, démonstrations, transitions. Chacun démarre la lecture dès l’application.',
+  },
+  {
+    icon: '⌁',
+    title: 'Courbes, pas de remplissage',
+    text: 'Douze courbes d’accélération (amorti, rebond, expo, élastique) appliquées segment par segment. Un mouvement propre tient en trois images clés, pas en trois cents.',
+  },
+  {
+    icon: '▤',
+    title: 'Timeline lisible',
+    text: 'Règle graduée adaptative, colonne de calques alignée au pixel, aimantation des images clés, lecture image par image et zoom temporel.',
+  },
+  {
+    icon: '◐',
+    title: 'Inspecteur complet',
+    text: 'Transformations 2D et 3D, opacité, flou, lueur, teinte, saturation, luminance, contraste. Chaque champ numérique s’édite à la main.',
+  },
+  {
+    icon: '◍',
+    title: 'Sans serveur',
+    text: 'Aucun compte, aucun envoi. Le projet est un fichier JSON que vous ouvrez et sauvegardez où vous voulez.',
+  },
+  {
+    icon: '⬒',
+    title: 'Thème sombre par défaut',
+    text: 'Interface encre sur fond studio, thème clair en un clic. La scène garde ses propres couleurs : l’interface ne teinte jamais l’animation.',
+  },
+];
+---
+<Base>
+  <section class="hero">
+    <div class="hero-kicker">Motion design · temps réel · local-first</div>
+    <h1>Des animations qui <em>tiennent</em> en trois images clés.</h1>
+    <p class="hero-lead">
+      HOT MOTOR MOTION est un éditeur de motion design qui tourne entièrement dans le
+      navigateur. Vous posez des formes, vous réglez des courbes, vous exportez une vidéo
+      ou un lecteur autonome. Aucun compte, aucun serveur, aucun rendu à attendre.
+    </p>
+    <div class="hero-actions">
+      <a class="site-cta" href="/editor">Ouvrir l’éditeur</a>
+      <a class="site-cta site-cta--ghost" href="https://github.com/zigmoon/HOTMOTORMOTION">Code source</a>
+    </div>
+    <p class="hero-note">Canvas 800 × 450 · 60 i/s · export WebM 4K et HTML autonome</p>
+  </section>
+
+  <section class="section" id="capacites">
+    <div class="section-head">
+      <h2>Ce que fait l’éditeur</h2>
+      <p>Le strict nécessaire, réglé finement.</p>
+    </div>
+    <div class="grid">
+      {capabilities.map((item) => (
+        <article class="card">
+          <h3><span aria-hidden="true">{item.icon}</span>{item.title}</h3>
+          <p>{item.text}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="section" id="exports">
+    <div class="section-head">
+      <h2>Exports</h2>
+      <p>Un fichier qui s’ouvre tout seul.</p>
+    </div>
+    <table class="table">
+      <thead>
+        <tr><th>Sortie</th><th>Contenu</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>HTML autonome</td><td>Lecteur complet, données et courbes incluses, aucune dépendance</td></tr>
+        <tr><td>JavaScript</td><td>Le même lecteur, à insérer dans une page existante</td></tr>
+        <tr><td>JSON</td><td>Projet relisible dans l’éditeur et par le moteur Rust</td></tr>
+        <tr><td>WebM</td><td>Vidéo capturée en temps réel, jusqu’à 4K</td></tr>
+        <tr><td>SVG</td><td>Image fixe d’un instant, rendue par le moteur Rust</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="section" id="moteur">
+    <div class="section-head">
+      <h2>Trois couches, une seule source</h2>
+      <p>Le même projet, du navigateur au terminal.</p>
+    </div>
+    <div class="split">
+      <article class="panel">
+        <h3>Web</h3>
+        <p>La version de référence : <code>index.html</code>, <code>js/</code>, <code>css/</code>. Aucune étape de build, ouvrable depuis un simple serveur statique.</p>
+        <pre class="code"><b>npx serve .</b>
+# http://localhost:3000</pre>
+      </article>
+      <article class="panel">
+        <h3>Astro</h3>
+        <p>Pages marketing et route <code>/editor</code>, en réutilisant le même moteur via <code>scripts/sync-engine.mjs</code>.</p>
+        <pre class="code"><b>cd astro &amp;&amp; npm install</b>
+npm run dev</pre>
+      </article>
+      <article class="panel">
+        <h3>Rust</h3>
+        <p>Validation, image SVG à un instant donné et lecteur HTML, sans dépendance externe. Aussi utile en CLI qu’en bibliothèque.</p>
+        <pre class="code"><b>cd rust &amp;&amp; cargo test</b>
+cargo run -p motion-cli -- inspect examples/sample.motion.json</pre>
+      </article>
+    </div>
+  </section>
+</Base>

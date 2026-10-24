@@ -1,0 +1,28 @@
+# Dépendances et artefacts de build
+**/node_modules/
+**/dist/
+**/target/
+**/.astro/
+**/.vite/
+**/coverage/
+**/*.log
+**/.DS_Store
+
+# Fichiers d'environnement
+.env
+.env.*
+!.env.example
+
+# Copies générées par `npm run sync` (astro/scripts/sync-engine.mjs) : la
+# source de vérité reste index.html, js/, css/, img/ et icons/ à la racine.
+astro/public/assets/motion/
+astro/public/manifest.webmanifest
+astro/src/generated/
+
+# Sorties d'export locales
+*.svg.out
+frame-*.svg
+animation-*.html
+
+# Paquets FTP / web : artefacts régénérables, jamais des sources.
+*.zip

@@ -1,0 +1,22 @@
+{
+  "name": "hot-motor-motion-astro",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "HOT MOTOR MOTION — version Astro de l'éditeur motion design",
+  "scripts": {
+    "sync": "node scripts/sync-engine.mjs",
+    "dev": "node scripts/sync-engine.mjs && astro dev",
+    "build": "node scripts/sync-engine.mjs && astro build",
+    "preview": "astro preview",
+    "start": "node ./dist/server/entry.mjs",
+    "postinstall": "node scripts/sync-engine.mjs"
+  },
+  "dependencies": {
+    "@astrojs/node": "^11.1.8",
+    "astro": "^7.4.0"
+  },
+  "engines": {
+    "node": ">=22.0.0"
+  }
+}

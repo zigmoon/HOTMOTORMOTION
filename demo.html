@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOT MOTOR MOTION — Démo</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #121214;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .loader {
+            text-align: center;
+        }
+        .loader-logo {
+            font-size: 24px;
+            font-weight: 600;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+            opacity: 0;
+            animation: fadeIn 0.5s ease forwards;
+        }
+        .loader-text {
+            color: #444;
+            font-size: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            opacity: 0;
+            animation: fadeIn 0.5s ease 0.3s forwards;
+        }
+        .loader-bar {
+            width: 200px;
+            height: 2px;
+            background: #222;
+            margin: 20px auto 0;
+            overflow: hidden;
+            opacity: 0;
+            animation: fadeIn 0.5s ease 0.5s forwards;
+        }
+        .loader-bar::after {
+            content: '';
+            display: block;
+            width: 50%;
+            height: 100%;
+            background: #f5c518;
+            animation: loading 1s ease-in-out infinite;
+        }
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+        @keyframes loading {
+            0% { transform: translateX(-100%); }
+            50% { transform: translateX(100%); }
+            100% { transform: translateX(300%); }
+        }
+    </style>
+</head>
+<body>
+    <div class="loader">
+        <div class="loader-logo">HOT MOTOR MOTION</div>
+        <div class="loader-text">Chargement de la démo…</div>
+        <div class="loader-bar"></div>
+    </div>
+    <script>
+        // Redirect to index.html with demo mode flag after brief animation
+        setTimeout(() => {
+            window.location.href = 'index.html?demo=true';
+        }, 1500);
+    </script>
+</body>
+</html>

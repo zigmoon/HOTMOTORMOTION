@@ -1,0 +1,16 @@
+{
+  "name": "hot-motor-motion",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "HOT MOTOR MOTION — éditeur motion design local-first (web, Astro, Rust)",
+  "scripts": {
+    "start": "npx --yes serve .",
+    "check": "node scripts/check-web.mjs",
+    "sync": "node astro/scripts/sync-engine.mjs",
+    "test:rust": "cargo test --manifest-path rust/Cargo.toml"
+  },
+  "engines": {
+    "node": ">=22.0.0"
+  }
+}

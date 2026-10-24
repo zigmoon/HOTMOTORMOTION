@@ -1,0 +1,54 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  web:
+    name: Moteur web
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '22'
+      # Aucune dépendance à installer : le contrôle est un script Node seul.
+      - name: Contrôles
+        run: node scripts/check-web.mjs
+
+  engine-sync:
+    name: Synchronisation Astro
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '22'
+      # Vérifie que la copie du moteur et l'extraction du shell fonctionnent
+      # toujours. Le build Astro complet (npm install) se fait au déploiement.
+      - name: Extraire le moteur
+        run: node astro/scripts/sync-engine.mjs
+      - name: Le shell doit contenir l'éditeur
+        run: |
+          test -s astro/src/generated/editor-shell.html
+          grep -q "app-container" astro/src/generated/editor-shell.html
+          grep -q "js/shell.js" astro/src/generated/editor-scripts.html
+
+  rust:
+    name: Moteur Rust
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: dtolnay/rust-toolchain@stable
+      # Zéro dépendance externe : pas de registre à télécharger.
+      - name: Tests
+        run: cargo test --manifest-path rust/Cargo.toml
+      - name: Exemple exportable
+        run: |
+          cargo run --manifest-path rust/Cargo.toml -p motion-cli -- \
+            inspect rust/examples/sample.motion.json
+          cargo run --manifest-path rust/Cargo.toml -p motion-cli -- \
+            render rust/examples/sample.motion.json --at 1.2 -o /tmp/frame.svg
+          test -s /tmp/frame.svg

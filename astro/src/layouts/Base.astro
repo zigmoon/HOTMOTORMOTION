@@ -1,0 +1,94 @@
+---
+import '../styles/site.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  noindex?: boolean;
+}
+
+const {
+  title = 'HOT MOTOR MOTION — Éditeur motion design dans le navigateur',
+  description = 'Éditeur motion design temps réel : timeline, images clés, courbes d’accélération, export WebM et lecteur autonome. Sans compte, sans serveur.',
+  noindex = false,
+} = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site || 'https://app.zigmoon.com');
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'HOT MOTOR MOTION',
+  applicationCategory: 'DesignApplication',
+  applicationSubCategory: 'Motion graphics editor',
+  operatingSystem: 'Web',
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' },
+  description,
+  url: canonical.toString(),
+  inLanguage: 'fr',
+  author: { '@type': 'Person', name: 'Zigmoon' },
+};
+---
+<!doctype html>
+<html lang="fr" class="theme-dark" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#121214" />
+    <meta name="application-name" content="HOT MOTOR MOTION" />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    {noindex && <meta name="robots" content="noindex,nofollow" />}
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="HOT MOTOR MOTION" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content="fr_FR" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <script is:inline src="/assets/motion/js/theme.js"></script>
+    <slot name="head" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="site-brand" href="/" aria-label="HOT MOTOR MOTION, accueil">
+        <img src="/assets/motion/img/HOT_MOTOR_MOTION_b.png" alt="" width="26" height="26" />
+      </a>
+      <nav class="site-nav" aria-label="Navigation principale">
+        <a href="/editor">Éditeur</a>
+        <a href="#capacites">Capacités</a>
+        <a href="#moteur">Moteur</a>
+        <a href="#exports">Exports</a>
+      </nav>
+      <a class="site-cta site-cta--small" href="/editor">Ouvrir l’éditeur</a>
+    </header>
+
+    <main class="site-main">
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <div>
+        <strong>HOT MOTOR MOTION</strong> — éditeur motion design local-first.
+        <span class="muted">Vos projets restent dans votre navigateur.</span>
+      </div>
+      <div class="site-footer-links">
+        <a href="/editor">Éditeur</a>
+        <a href="https://github.com/zigmoon/HOTMOTORMOTION">GitHub</a>
+        <a href="/sitemap.xml">Sitemap</a>
+      </div>
+    </footer>
+  </body>
+</html>

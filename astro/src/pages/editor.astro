@@ -1,0 +1,15 @@
+---
+import EditorLayout from '../layouts/EditorLayout.astro';
+import shell from '../generated/editor-shell.html?raw';
+import engineScripts from '../generated/editor-scripts.html?raw';
+
+const title = 'HOT MOTOR MOTION — Éditeur motion design en ligne';
+const description =
+  'Éditeur motion design temps réel dans le navigateur : timeline, images clés, courbes d’accélération, export WebM et lecteur autonome. Sans compte, sans serveur.';
+---
+<EditorLayout title={title} description={description}>
+  <Fragment set:html={shell} />
+
+  <!-- Ordre de chargement recopié de index.html par sync-engine.mjs -->
+  <Fragment set:html={engineScripts} />
+</EditorLayout>

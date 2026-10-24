@@ -1,0 +1,8 @@
+# HOT MOTOR MOTION - robots.txt
+# https://motion.zig-js.com
+
+User-agent: *
+Allow: /
+Disallow: /api/
+
+Sitemap: https://motion.zig-js.com/sitemap.xml

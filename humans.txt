@@ -1,0 +1,16 @@
+/* TEAM */
+Developer: ZIG-JS Team
+Site: https://motion.zig-js.com
+Location: France
+
+/* THANKS */
+Fonts: Inter, JetBrains Mono - Google Fonts
+Icons: inline SVG
+
+/* SITE */
+Last update: 2026/10/25
+Language: French / Francais
+Doctype: HTML5
+IDE: Visual Studio Code
+Technology: HTML5, CSS3, JavaScript ES6+, Canvas API
+Standards: semantic HTML, ARIA, prefers-reduced-motion, prefers-color-scheme

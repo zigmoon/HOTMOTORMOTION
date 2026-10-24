@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="fr" class="theme-dark" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Primary Meta Tags -->
+    <title>HOT MOTOR MOTION | Éditeur Motion Design JavaScript Gratuit en Ligne</title>
+    <meta name="title" content="HOT MOTOR MOTION | Éditeur Motion Design JavaScript Gratuit en Ligne">
+    <meta name="description" content="Créez des animations motion design professionnelles directement dans votre navigateur. Timeline, keyframes, effets 3D, export WebM et JavaScript. 100% gratuit, sans inscription.">
+    <meta name="keywords" content="motion design, animation web, éditeur animation, javascript animation, canvas animation, keyframes, timeline animation, export webm, motion graphics, animation gratuite, éditeur motion en ligne, créer animation, motion design tool, web animation editor, CSS animation, SVG animation, effets visuels, 3D transform, glow effects, particles animation">
+    <meta name="author" content="ZIG-JS">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="French">
+    <meta name="revisit-after" content="7 days">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://motion.zig-js.com/">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://motion.zig-js.com/">
+    <meta property="og:title" content="HOT MOTOR MOTION | Éditeur Motion Design JavaScript Gratuit">
+    <meta property="og:description" content="Créez des animations motion design professionnelles directement dans votre navigateur. Timeline, keyframes, effets 3D, export WebM. 100% gratuit!">
+    <meta property="og:image" content="https://motion.zig-js.com/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:site_name" content="HOT MOTOR MOTION">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://motion.zig-js.com/">
+    <meta property="twitter:title" content="HOT MOTOR MOTION | Éditeur Motion Design JavaScript Gratuit">
+    <meta property="twitter:description" content="Créez des animations motion design professionnelles directement dans votre navigateur. Timeline, keyframes, effets 3D, export WebM. 100% gratuit!">
+    <meta property="twitter:image" content="https://motion.zig-js.com/og-image.png">
+    
+    <!-- Additional SEO -->
+    <meta name="theme-color" content="#121214">
+    <meta name="msapplication-TileColor" content="#121214">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="HOT MOTOR MOTION">
+    <meta name="application-name" content="HOT MOTOR MOTION">
+
+    <!-- Thème avant le premier rendu (sombre par défaut) -->
+    <script src="js/theme.js"></script>
+
+<!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='12' fill='%23FFD700'/><polygon points='35,25 35,75 75,50' fill='%23000'/></svg>">
+    <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
+    
+    <!-- Structured Data / JSON-LD -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "HOT MOTOR MOTION",
+        "description": "Éditeur motion design JavaScript gratuit en ligne. Créez des animations professionnelles avec timeline, keyframes, effets 3D et exportez en WebM ou JavaScript.",
+        "url": "https://motion.zig-js.com",
+        "applicationCategory": "DesignApplication",
+        "operatingSystem": "Web Browser",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "EUR"
+        },
+        "featureList": [
+            "Timeline animation",
+            "Keyframe editing",
+            "3D transforms",
+            "WebM export",
+            "JavaScript export",
+            "SVG import",
+            "Real-time preview",
+            "50+ animation presets",
+            "Glow and blur effects",
+            "AI assistant integration"
+        ],
+        "screenshot": "https://motion.zig-js.com/screenshot.png",
+        "softwareVersion": "1.0.0",
+        "author": {
+            "@type": "Organization",
+            "name": "ZIG-JS"
+        }
+    }
+    </script>
+    
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- Humans.txt -->
+    <link rel="author" href="humans.txt">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Fira+Code:wght@400;500;600;700&family=Source+Code+Pro:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&family=Space+Mono:wght@400;700&family=Roboto+Mono:wght@400;500;600;700&family=Ubuntu+Mono:wght@400;700&family=Inconsolata:wght@400;500;600;700&family=Victor+Mono:wght@400;500;600;700&family=Cascadia+Code:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@400;500;600;700;800&family=Clash+Display:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&family=Manrope:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600;700&family=Satoshi:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    
+</head>
+<body>
+    <!-- Splash Screen -->
+    <div id="splashScreen" class="splash-screen" aria-hidden="false">
+        <div class="splash-card">
+            <div class="splash-logo-panel">
+                <img class="splash-logo" src="img/HOT_MOTOR_MOTION_b.png" alt="Hot Motor Motion" />
+                <div class="splash-brand-big">HOT MOTOR<br>MOTION</div>
+            </div>
+            <div class="splash-media">
+                <img id="splashImage" alt="" aria-hidden="true" src="img/HOT_MOTOR_MOTION_b.png" />
+            </div>
+            <div class="splash-info">
+                <div class="splash-subtitle">Motion Design Editor</div>
+                <div class="splash-version">Version 1.0.0 • 03.02.2026</div>
+                <div class="splash-section">
+                    <div class="splash-label">Features</div>
+                    <div class="splash-text">Timeline & Keyframes</div>
+                    <div class="splash-text">3D Transforms & Effects</div>
+                    <div class="splash-text">WebM & JS Export</div>
+                </div>
+                <div class="splash-section">
+                    <div class="splash-label">Built by</div>
+                    <div class="splash-text">Simon Dupont (zigmoon)</div>
+                </div>
+                <div class="splash-footer">Loading…</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="app-container" id="app">
+        <!-- Barre supérieure -->
+        <header class="toolbar">
+            <div class="toolbar-left">
+                <a class="brand" href="./" title="HOT MOTOR MOTION" aria-label="HOT MOTOR MOTION">
+                    <img class="brand-logo" src="img/HOT_MOTOR_MOTION_b.png" alt="HOT MOTOR MOTION">
+                </a>
+                <span class="topbar-sep" aria-hidden="true"></span>
+                <button id="btn-new" class="tb-btn" title="Nouveau projet" aria-label="Nouveau projet">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                        <polyline points="14 2 14 8 20 8"/>
+                        <line x1="12" y1="18" x2="12" y2="12"/>
+                        <line x1="9" y1="15" x2="15" y2="15"/>
+                    </svg>
+                    <span class="tb-label">Nouveau</span>
+                </button>
+                <button id="btn-save" class="tb-btn" title="Sauvegarder le projet (JSON)" aria-label="Sauvegarder le projet">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+                        <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/>
+                        <polyline points="17 21 17 13 7 13 7 21"/>
+                        <polyline points="7 3 7 8 15 8"/>
+                    </svg>
+                    <span class="tb-label">Sauvegarder</span>
+                </button>
+                <button id="btn-open" class="tb-btn" title="Ouvrir un projet (JSON)" aria-label="Ouvrir un projet">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+                        <path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                    </svg>
+                    <span class="tb-label">Ouvrir</span>
+                </button>
+                <input type="file" id="file-input-project" accept=".json,application/json" hidden>
+            </div>
+            <div class="toolbar-center">
+                <div class="tools" role="toolbar" aria-label="Outils de création">
+                    <button id="btn-select" class="tool-btn active" title="Sélection (V)" aria-label="Sélection">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+                            <path d="M4 4l7 17 2.5-6.5L20 12 4 4z"/>
+                        </svg>
+                    </button>
+                    <button id="btn-rect" class="tool-btn" title="Rectangle (R)" aria-label="Rectangle">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+                            <rect x="3" y="3" width="18" height="18" rx="1"/>
+                        </svg>
+                    </button>
+                    <button id="btn-circle" class="tool-btn" title="Cercle (C)" aria-label="Cercle">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+                            <circle cx="12" cy="12" r="9"/>
+                        </svg>
+                    </button>
+                    <button id="btn-text" class="tool-btn" title="Texte (T)" aria-label="Texte">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+                            <path d="M4 6h16M4 6v2M20 6v2M12 6v14M9 20h6"/>
+                        </svg>
+                    </button>
+                    <span class="tools-sep" aria-hidden="true"></span>
+                    <button id="btn-import-svg" class="tool-btn" title="Importer un SVG">SVG</button>
+                    <input type="file" id="file-input-svg" accept=".svg" hidden>
+                    <button id="btn-ia" class="tool-btn" title="Assistant IA">IA</button>
+                </div>
+            </div>
+            <div class="toolbar-right">
+                <div class="actions">
+                    <button id="btn-export-js" class="action-btn">Export JS</button>
+                    <button id="btn-export" class="action-btn primary">Exporter WebM</button>
+                </div>
+                <span class="topbar-sep" aria-hidden="true"></span>
+                <button id="btn-webcam" class="tb-icon" title="Motion Control (caméra)" aria-label="Motion Control">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+                        <path d="M23 7l-7 5 7 5V7z"/>
+                        <rect x="1" y="5" width="15" height="14" rx="2"/>
+                    </svg>
+                </button>
+                <button id="btn-theme" class="tb-icon theme-toggle" title="Thème clair / sombre" aria-label="Basculer le thème">
+                    <svg class="theme-icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+                        <circle cx="12" cy="12" r="4"/>
+                        <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>
+                    </svg>
+                    <svg class="theme-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+                        <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/>
+                    </svg>
+                </button>
+                <button id="btn-toggle-left" class="tb-icon panel-toggle" title="Afficher / masquer l'inspecteur" aria-label="Afficher ou masquer l'inspecteur">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+                        <rect x="3" y="3" width="18" height="18" rx="2"/>
+                        <line x1="9" y1="3" x2="9" y2="21"/>
+                    </svg>
+                </button>
+                <button id="btn-toggle-right" class="tb-icon panel-toggle" title="Afficher / masquer les presets" aria-label="Afficher ou masquer les presets">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+                        <rect x="3" y="3" width="18" height="18" rx="2"/>
+                        <line x1="15" y1="3" x2="15" y2="21"/>
+                    </svg>
+                </button>
+            </div>
+        </header>
+
+        <!-- Webcam Modal -->
+        <div id="webcam-modal" class="modal hidden">
+            <div class="modal-content webcam-modal-content">
+                <div class="modal-header">
+                    <h3>✋ Motion Control</h3>
+                    <button id="webcam-modal-close" class="icon-btn">✕</button>
+                </div>
+                <div class="modal-body">
+                    <div class="webcam-container">
+                        <video id="webcam-video" autoplay playsinline></video>
+                        <canvas id="webcam-canvas"></canvas>
+                        <div id="hand-cursor" class="hand-cursor"></div>
+                    </div>
+                    <div class="webcam-controls">
+                        <button id="webcam-start" class="action-btn primary">▶ Démarrer</button>
+                        <button id="webcam-stop" class="action-btn">◼ Arrêter</button>
+                        <button id="webcam-minimize" class="action-btn">↙ Réduire</button>
+                    </div>
+                    <div class="webcam-controls">
+                        <label class="webcam-option">
+                            <input type="checkbox" id="webcam-mirror" checked> Miroir
+                        </label>
+                        <label class="webcam-option">
+                            <span>Sensibilité</span>
+                            <input type="range" id="webcam-sensitivity" min="1" max="100" value="50">
+                        </label>
+                    </div>
+                    <p class="webcam-help">1. Crée une forme (Rect, Circle...)<br>2. Sélectionne-la<br>3. Bouge ta main devant la caméra pour la déplacer !</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mini webcam preview (when minimized) -->
+        <div id="webcam-mini" class="webcam-mini hidden">
+            <video id="webcam-video-mini" autoplay playsinline muted></video>
+            <div class="webcam-mini-status" id="webcam-mini-status">●</div>
+            <button id="webcam-expand" class="webcam-mini-btn">↗</button>
+        </div>
+
+        <div class="main-workspace">
+            <!-- Left Panel: Inspector & FX -->
+            <aside class="panel left-panel">
+                <div class="panel-section inspector-section">
+                    <div class="panel-header">Inspecteur</div>
+                    <div id="properties-content" class="properties-content">
+                        <div class="empty-state">Aucune sélection</div>
+                    </div>
+                </div>
+                
+                <div class="panel-section collapsible collapsed">
+                    <div class="panel-header toggle" data-target="fx-section">
+                        <span>Effets</span>
+                        <span class="toggle-icon">▶</span>
+                    </div>
+                    <div class="fx-sliders hidden" id="fx-section">
+                        <div class="slider-3d">
+                            <label>Opacité</label>
+                            <input type="range" id="fx-opacity" min="0" max="1" step="0.01" value="1">
+                            <span class="value" id="val-opacity">100%</span>
+                        </div>
+                        <div class="slider-3d">
+                            <label>Flou</label>
+                            <input type="range" id="fx-blur" min="0" max="50" value="0">
+                            <span class="value" id="val-blur">0px</span>
+                        </div>
+                        <div class="slider-3d">
+                            <label>Lueur</label>
+                            <input type="range" id="fx-glow" min="0" max="60" value="0">
+                            <span class="value" id="val-glow">0</span>
+                        </div>
+                        <div class="slider-3d">
+                            <label>Teinte</label>
+                            <input type="range" id="fx-hue" min="0" max="360" value="0">
+                            <span class="value" id="val-hue">0°</span>
+                        </div>
+                        <div class="slider-3d">
+                            <label>Saturation</label>
+                            <input type="range" id="fx-saturate" min="0" max="200" value="100">
+                            <span class="value" id="val-saturate">100%</span>
+                        </div>
+                        <div class="slider-3d">
+                            <label>Luminosité</label>
+                            <input type="range" id="fx-brightness" min="0" max="200" value="100">
+                            <span class="value" id="val-brightness">100%</span>
+                        </div>
+                        <div class="slider-3d">
+                            <label>Contraste</label>
+                            <input type="range" id="fx-contrast" min="0" max="200" value="100">
+                            <span class="value" id="val-contrast">100%</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel-section collapsible collapsed">
+                    <div class="panel-header toggle" data-target="transform-section">
+                        <span>Transformation 3D</span>
+                        <span class="toggle-icon">▶</span>
+                    </div>
+                    <div class="fx-sliders hidden" id="transform-section">
+                        <div class="slider-3d">
+                            <label>Rot X</label>
+                            <input type="range" id="fx-rotX" min="-180" max="180" value="0">
+                            <span class="value" id="val-rotX">0°</span>
+                        </div>
+                        <div class="slider-3d">
+                            <label>Rot Y</label>
+                            <input type="range" id="fx-rotY" min="-180" max="180" value="0">
+                            <span class="value" id="val-rotY">0°</span>
+                        </div>
+                        <div class="slider-3d">
+                            <label>Rot Z</label>
+                            <input type="range" id="fx-rotZ" min="-180" max="180" value="0">
+                            <span class="value" id="val-rotZ">0°</span>
+                        </div>
+                        <div class="slider-3d">
+                            <label>Skew X</label>
+                            <input type="range" id="fx-skewX" min="-45" max="45" value="0">
+                            <span class="value" id="val-skewX">0°</span>
+                        </div>
+                        <div class="slider-3d">
+                            <label>Skew Y</label>
+                            <input type="range" id="fx-skewY" min="-45" max="45" value="0">
+                            <span class="value" id="val-skewY">0°</span>
+                        </div>
+                        <div class="slider-3d">
+                            <label>Échelle</label>
+                            <input type="range" id="fx-scale" min="0.1" max="3" step="0.1" value="1">
+                            <span class="value" id="val-scale">1x</span>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Center: Canvas -->
+            <main class="canvas-area">
+                <div class="zoom-controls">
+                    <label class="bg-color-picker">
+                        <span>BG</span>
+                        <input type="color" id="bg-color" value="#121212" title="Couleur de fond">
+                    </label>
+                    <span class="zoom-separator">|</span>
+                    <button id="zoom-out" title="Zoom Out (Ctrl+-)">−</button>
+                    <span id="zoom-info">100%</span>
+                    <button id="zoom-in" title="Zoom In (Ctrl++)">+</button>
+                    <button id="zoom-reset" title="Reset Zoom (Ctrl+0)">⟲</button>
+                </div>
+                <div class="canvas-wrapper">
+                    <canvas id="motion-canvas" width="800" height="450"></canvas>
+                </div>
+            </main>
+
+            <!-- Panneau droit : bibliothèque d'effets -->
+            <aside class="panel right-panel">
+                <div class="panel-header">
+                    <span>Bibliothèque</span>
+                    <span class="panel-count" id="preset-count">0</span>
+                </div>
+                <div class="panel-toolbar">
+                    <label class="search-field">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+                            <circle cx="11" cy="11" r="7"/>
+                            <line x1="16.3" y1="16.3" x2="21" y2="21"/>
+                        </svg>
+                        <input id="preset-search" type="search" placeholder="Rechercher un effet" autocomplete="off" spellcheck="false" aria-label="Rechercher un effet">
+                    </label>
+                    <button id="preset-demo" class="action-btn sm" title="Charger la scène de démonstration">Démo</button>
+                </div>
+                <div class="panel-content preset-panel" id="preset-panel"></div>
+            </aside>
+        </div>
+
+        <!-- AI Prompt Console (hidden by default) - Draggable floating panel -->
+        <div id="ai-console" class="ai-console hidden">
+            <div class="ai-console-header" id="ai-console-drag">
+                <span class="drag-handle">⋮⋮</span>
+                <span class="ai-status" id="ai-status">●</span>
+                <span class="ai-model" id="ai-model"></span>
+                <button id="ai-console-close" class="icon-btn" title="Close">✕</button>
+            </div>
+            <div class="ai-examples" id="ai-examples">
+                <div class="ai-examples-label">Exemples :</div>
+                <div class="ai-examples-grid">
+                    <button class="ai-example-btn" data-prompt="Create a bouncing red ball that bounces 3 times across the screen">◉ Bouncing Ball</button>
+                    <button class="ai-example-btn" data-prompt="Create a cinematic title reveal: the word MOTION fades in from blur with a golden glow effect">Aa Title Reveal</button>
+                    <button class="ai-example-btn" data-prompt="Create a neon circle that pulses with glow and color shifting, cyberpunk style">✦ Neon Pulse</button>
+                    <button class="ai-example-btn" data-prompt="Create a loading spinner animation: a white arc rotating infinitely">◔ Loader</button>
+                    <button class="ai-example-btn" data-prompt="Create 5 colored rectangles that slide in from the left one after another with a stagger effect">▦ Stagger Slide</button>
+                    <button class="ai-example-btn" data-prompt="Create a logo animation: a golden square spins in, then the text HOT MOTOR fades in below it">◈ Logo Intro</button>
+                    <button class="ai-example-btn" data-prompt="Create a starfield effect: many small white circles moving from center outward, simulating traveling through space">✧ Starfield</button>
+                    <button class="ai-example-btn" data-prompt="Create a lower third title bar: a thin rectangle slides in from left, then text appears with fade-in">▭ Lower Third</button>
+                </div>
+            </div>
+            <div class="ai-input-row">
+                <textarea id="ai-prompt" class="ai-prompt-input" placeholder="Décrivez une animation... (ex: 'crée un titre qui apparaît avec un effet de glow')" rows="3"></textarea>
+                <button id="ai-send" class="action-btn primary">Envoyer</button>
+            </div>
+            <div class="ai-messages" id="ai-messages"></div>
+        </div>
+
+        <!-- Export JS Modal -->
+        <div id="export-js-modal" class="modal hidden">
+            <div class="modal-content modal-large">
+                <div class="modal-header">
+                    <h3>📦 Export JavaScript</h3>
+                    <button id="export-js-modal-close" class="icon-btn">✕</button>
+                </div>
+                <div class="modal-body">
+                    <p class="export-js-info">Code prêt à copier-coller dans votre projet HTML. Inclut tout le nécessaire pour rejouer l'animation.</p>
+                    <div class="export-js-tabs">
+                        <button class="export-js-tab active" data-tab="full">HTML Complet</button>
+                        <button class="export-js-tab" data-tab="js">JS seul</button>
+                        <button class="export-js-tab" data-tab="data">Data JSON</button>
+                    </div>
+                    <div class="export-js-code-container">
+                        <button id="copy-export-js" class="copy-btn">📋 Copier</button>
+                        <pre id="export-js-code" class="export-js-code"></pre>
+                    </div>
+                    <div class="export-js-footer">
+                        <span id="export-js-size"></span>
+                        <button id="download-export-js" class="action-btn primary">💾 Télécharger</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Export Modal -->
+        <div id="export-modal" class="modal hidden">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>📹 Export WebM</h3>
+                    <button id="export-modal-close" class="icon-btn">✕</button>
+                </div>
+                <div class="modal-body">
+                    <div class="prop-section">
+                        <div class="prop-section-title">Résolution</div>
+                        <div class="export-sizes">
+                            <button class="export-size-btn" data-width="640" data-height="360">640×360</button>
+                            <button class="export-size-btn active" data-width="800" data-height="450">800×450</button>
+                            <button class="export-size-btn" data-width="1280" data-height="720">1280×720 HD</button>
+                            <button class="export-size-btn" data-width="1920" data-height="1080">1920×1080 FHD</button>
+                            <button class="export-size-btn" data-width="3840" data-height="2160">3840×2160 4K</button>
+                        </div>
+                    </div>
+                    <div class="prop-section">
+                        <div class="prop-section-title">Fréquence</div>
+                        <div class="export-sizes">
+                            <button class="export-fps-btn" data-fps="24">24 fps</button>
+                            <button class="export-fps-btn" data-fps="30">30 fps</button>
+                            <button class="export-fps-btn active" data-fps="60">60 fps</button>
+                        </div>
+                    </div>
+                    <div class="prop-section">
+                        <div class="prop-section-title">Qualité</div>
+                        <div class="export-sizes">
+                            <button class="export-quality-btn" data-bitrate="2500000">Low (2.5 Mbps)</button>
+                            <button class="export-quality-btn active" data-bitrate="5000000">Medium (5 Mbps)</button>
+                            <button class="export-quality-btn" data-bitrate="10000000">High (10 Mbps)</button>
+                            <button class="export-quality-btn" data-bitrate="20000000">Ultra (20 Mbps)</button>
+                        </div>
+                    </div>
+                    <div class="export-info">
+                        <span id="export-info-text">Ready to export: 800×450 @ 60fps</span>
+                    </div>
+                    <div class="export-progress hidden" id="export-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="export-progress-fill"></div>
+                        </div>
+                        <span id="export-progress-text">Exporting... 0%</span>
+                    </div>
+                    <button id="export-start" class="action-btn primary" style="width:100%; margin-top:12px;">Lancer l'export</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- AI Config Modal -->
+        <div id="ai-modal" class="modal hidden">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Configuration IA</h3>
+                    <button id="modal-close" class="icon-btn">✕</button>
+                </div>
+                <div class="modal-body">
+                    <div class="prop-section">
+                        <div class="prop-section-title">Fournisseur</div>
+                        <div class="ai-providers">
+                            <button class="ai-provider-btn" data-provider="gemini">
+                                <span class="provider-icon">◆</span>
+                                <span>Gemini</span>
+                            </button>
+                            <button class="ai-provider-btn" data-provider="anthropic">
+                                <span class="provider-icon">◉</span>
+                                <span>Claude</span>
+                            </button>
+                            <button class="ai-provider-btn" data-provider="openai">
+                                <span class="provider-icon">◈</span>
+                                <span>GPT</span>
+                            </button>
+                            <button class="ai-provider-btn" data-provider="grok">
+                                <span class="provider-icon">✕</span>
+                                <span>Grok</span>
+                            </button>
+                            <button class="ai-provider-btn" data-provider="mistral">
+                                <span class="provider-icon">◎</span>
+                                <span>Mistral</span>
+                            </button>
+                            <button class="ai-provider-btn" data-provider="cohere">
+                                <span class="provider-icon">●</span>
+                                <span>Cohere</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="prop-section">
+                        <div class="prop-section-title">Clé API</div>
+                        <input type="password" id="ai-api-key" class="prop-input" placeholder="Enter your API key...">
+                    </div>
+                    <div class="prop-section">
+                        <div class="prop-section-title">Modèle</div>
+                        <select id="ai-model-select" class="prop-input">
+                            <option value="">Select provider first</option>
+                        </select>
+                    </div>
+                    <button id="ai-connect" class="action-btn primary" style="width:100%; margin-top:12px;">Connecter</button>
+                    <p id="ai-error" class="ai-error"></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Timeline -->
+        <footer class="timeline-panel">
+            <div class="timeline-controls">
+                <div class="transport" role="group" aria-label="Lecture">
+                    <button id="btn-play-pause" class="transport-btn is-primary" title="Lecture / pause (Espace)" aria-label="Lecture">▶</button>
+                    <button id="btn-stop" class="transport-btn" title="Stop" aria-label="Stop">■</button>
+                    <button id="btn-loop" class="transport-btn" title="Lecture en boucle" aria-label="Lecture en boucle">⟳</button>
+                </div>
+                <span class="tl-sep" aria-hidden="true"></span>
+                <div class="transport" role="group" aria-label="Navigation image par image">
+                    <button id="btn-step-back" class="transport-btn" title="Image précédente (←)" aria-label="Image précédente">‹</button>
+                    <button id="btn-step-fwd" class="transport-btn" title="Image suivante (→)" aria-label="Image suivante">›</button>
+                </div>
+                <span class="tl-sep" aria-hidden="true"></span>
+                <div class="timecode">
+                    <span id="time-display">00:00.00</span>
+                    <span class="timecode-total" id="time-total">/ 00:10.00</span>
+                </div>
+                <span class="tl-sep" aria-hidden="true"></span>
+                <label class="tl-field">
+                    <span>Durée</span>
+                    <select id="timeline-duration">
+                        <option value="3">3 s</option>
+                        <option value="5">5 s</option>
+                        <option value="10" selected>10 s</option>
+                        <option value="15">15 s</option>
+                        <option value="20">20 s</option>
+                        <option value="30">30 s</option>
+                        <option value="60">60 s</option>
+                        <option value="120">2 min</option>
+                        <option value="300">5 min</option>
+                    </select>
+                </label>
+                <div class="tl-spacer"></div>
+                <div class="tl-zoom" role="group" aria-label="Zoom de la timeline">
+                    <button id="tl-zoom-out" class="transport-btn" title="Dézoomer (Ctrl + molette)" aria-label="Dézoomer">−</button>
+                    <button id="tl-zoom-reset" class="tl-zoom-value" title="Recadrer la timeline">Ajuster</button>
+                    <button id="tl-zoom-in" class="transport-btn" title="Zoomer (Ctrl + molette)" aria-label="Zoomer">+</button>
+                </div>
+                <input type="range" id="timeline-scrubber" min="0" max="100" value="0" step="0.1">
+            </div>
+            <div class="timeline-body">
+                <div class="timeline-layers" id="timeline-layers"></div>
+                <div class="timeline-tracks" id="timeline-tracks"></div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Bibliothèque de presets -->
+    <script src="js/presets.js"></script>
+    <!-- Moteur de l'éditeur -->
+    <script src="js/bundle.js"></script>
+    <!-- Coque : thème, panneaux, outils, écran de démarrage -->
+    <script src="js/shell.js"></script>
+</body>
+</html>
