@@ -295,7 +295,7 @@ no download, no warm-up, and it degrades to nothing rather than to nonsense.
 
 ```bash
 cd astro
-npm install
+npm ci             # exact versions from package-lock.json
 npm run dev        # http://localhost:4321
 npm run build      # node adapter, standalone
 npm start
@@ -365,6 +365,16 @@ the lightness budget. A preset that grows to 200 shapes fails CI.
 `astro/src/generated/` are build products, ignored by Git. Edit `js/`, `css/`,
 `img/`, `icons/` or `index.html`, then `npm run sync`.
 
+### What CI runs
+
+| Job | What it proves |
+|---|---|
+| *Moteur web* | `node scripts/check-web.mjs`: scripts compile, every id resolves, assets exist, every preset stays inside the budget. |
+| *Build Astro* | `npm ci` (lockfile still matches `package.json`), `npm run build`, then the built server is booted and `/`, `/editor`, `/api/health`, `/sitemap.xml` and `/assets/motion/js/bundle.js` are fetched over HTTP. |
+| *Moteur Rust* | `cargo test` offline, then `inspect` and `render` on the sample project. |
+
+Locally, the same build: `cd astro && npm ci && npm run build && npm start`.
+
 ### Hosting in a subdirectory
 
 Every path in `index.html` is relative (`css/style.css`, `js/bundle.js`,
@@ -390,7 +400,6 @@ points at the JS/HTML export instead of failing silently. Webcam control needs
   the global selector.
 - **Rust: video export** via a real encoder, to move beyond `MediaRecorder`’s 4K
   ceiling.
-- **Astro build in CI** once an install step and a lockfile are committed.
 
 ---
 

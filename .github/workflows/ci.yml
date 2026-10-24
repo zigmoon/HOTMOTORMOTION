@@ -18,16 +18,17 @@ jobs:
       - name: Contrôles
         run: node scripts/check-web.mjs
 
-  engine-sync:
-    name: Synchronisation Astro
+  astro:
+    name: Build Astro
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-node@v5
         with:
           node-version: '22'
-      # Vérifie que la copie du moteur et l'extraction du shell fonctionnent
-      # toujours. Le build Astro complet (npm install) se fait au déploiement.
+          cache: 'npm'
+          cache-dependency-path: astro/package-lock.json
+      # 1. La copie du moteur et l'extraction du shell (rapide, sans dépendances).
       - name: Extraire le moteur
         run: node astro/scripts/sync-engine.mjs
       - name: Le shell doit contenir l'éditeur
@@ -35,6 +36,31 @@ jobs:
           test -s astro/src/generated/editor-shell.html
           grep -q "app-container" astro/src/generated/editor-shell.html
           grep -q "js/shell.js" astro/src/generated/editor-scripts.html
+      # 2. Le build réel : npm ci échoue si package-lock.json dérive de package.json.
+      - name: Installer
+        run: npm ci
+        working-directory: astro
+      - name: Compiler
+        run: npm run build
+        working-directory: astro
+      - name: Le build contient les pages et le moteur
+        run: |
+          test -f astro/dist/server/entry.mjs
+          test -f astro/dist/client/assets/motion/js/bundle.js
+          test -f astro/dist/client/assets/motion/css/style.css
+      - name: Démarrer et interroger le serveur
+        run: |
+          cd astro
+          PORT=8910 HOST=127.0.0.1 node ./dist/server/entry.mjs &
+          for i in $(seq 1 30); do
+            sleep 1
+            if curl -fsS http://127.0.0.1:8910/api/health > /dev/null; then break; fi
+          done
+          curl -fsS http://127.0.0.1:8910/api/health | grep -q '"ok":true'
+          curl -fsS http://127.0.0.1:8910/ | grep -q "HOT MOTOR MOTION"
+          curl -fsS http://127.0.0.1:8910/editor | grep -q "app-container"
+          curl -fsS http://127.0.0.1:8910/sitemap.xml | grep -q "/editor"
+          test "$(curl -s -o /dev/null -w '%{http_code}' http://127.0.0.1:8910/assets/motion/js/bundle.js)" = "200"
 
   rust:
     name: Moteur Rust

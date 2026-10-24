@@ -304,7 +304,7 @@ d’échec cela ne fait rien plutôt que n’importe quoi.
 
 ```bash
 cd astro
-npm install
+npm ci             # versions exactes de package-lock.json
 npm run dev        # http://localhost:4321
 npm run build      # adaptateur node, autonome
 npm start
@@ -375,6 +375,16 @@ harnais** pour faire respecter le budget de légèreté. Un preset qui grossit j
 `astro/src/generated/` sont des produits de build, ignorés par Git. On modifie
 `js/`, `css/`, `img/`, `icons/` ou `index.html`, puis `npm run sync`.
 
+### Ce que lance la CI
+
+| Job | Ce qu’il prouve |
+|---|---|
+| *Moteur web* | `node scripts/check-web.mjs` : les scripts compilent, chaque identifiant résout, les ressources existent, chaque preset reste dans le budget. |
+| *Build Astro* | `npm ci` (le verrouillage correspond toujours à `package.json`), `npm run build`, puis le serveur compilé est démarré et `/`, `/editor`, `/api/health`, `/sitemap.xml` et `/assets/motion/js/bundle.js` sont interrogés en HTTP. |
+| *Moteur Rust* | `cargo test` hors ligne, puis `inspect` et `render` sur le projet d’exemple. |
+
+En local, le même build : `cd astro && npm ci && npm run build && npm start`.
+
 ### Hébergement dans un sous-dossier
 
 Tous les chemins de `index.html` sont relatifs (`css/style.css`, `js/bundle.js`,
@@ -401,8 +411,6 @@ vers l’export JS/HTML au lieu d’échouer en silence. Le contrôle caméra ex
   pas seulement le sélecteur global.
 - **Rust : export vidéo** via un vrai encodeur, pour dépasser le plafond 4K de
   `MediaRecorder`.
-- **Build Astro en CI** dès qu’une étape d’installation et un fichier de verrouillage
-  seront commités.
 
 ---
 

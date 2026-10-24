@@ -35,9 +35,16 @@ npm run dev        # http://localhost:4321
 ## Production
 
 ```bash
+npm ci             # installe exactement package-lock.json
 npm run build
 npm start          # serveur Node autonome (dist/server/entry.mjs)
 ```
+
+Le build sort en mode `server` (adaptateur `@astrojs/node`) : `dist/client`
+contient les fichiers statiques et `dist/server/entry.mjs` le serveur. Le
+build complet est rejoué par la CI (job *Build Astro*), qui démarre aussi le
+serveur et interroge `/`, `/editor`, `/api/health`, `/sitemap.xml` et le
+moteur. `PORT` et `HOST` sont lus par `npm start`.
 
 Variables d’environnement — toutes **facultatives** : sans elles, le client
 envoie sa propre clé dans l’en-tête `x-provider-key`.
