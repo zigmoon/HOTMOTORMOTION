@@ -234,4 +234,66 @@
             });
         }
     });
+
+    /* ── Service worker ──────────────────────────────────────────────────
+       Hors ligne : le moteur est précaché par sw.js. L'enregistrement exige
+       un contexte sécurisé et un vrai serveur ; en file:// il n'y a rien à
+       faire. `?sw=off` désinscrit et purge les caches, pour le dépannage.  */
+
+    function registerServiceWorker() {
+        if (!('serviceWorker' in navigator)) return;
+
+        var secure = location.protocol === 'https:' ||
+            location.hostname === 'localhost' ||
+            location.hostname === '127.0.0.1' ||
+            location.hostname === '[::1]';
+        if (!secure) return;
+
+        var optOut = false;
+        try {
+            optOut = new URLSearchParams(location.search).get('sw') === 'off';
+        } catch (error) {
+            optOut = false;
+        }
+
+        if (optOut) {
+            // La page reste contrôlée par l'ancien worker jusqu'au rechargement :
+            // sans ce rechargement, il repeuple le cache aussitôt purgé.
+            var wasControlled = !!navigator.serviceWorker.controller;
+
+            navigator.serviceWorker.getRegistrations().then(function (registrations) {
+                registrations.forEach(function (registration) {
+                    registration.unregister();
+                });
+            }).catch(function () { /* rien à faire */ });
+
+            if (window.caches) {
+                window.caches.keys().then(function (keys) {
+                    keys.forEach(function (key) {
+                        window.caches.delete(key);
+                    });
+                }).catch(function () { /* rien à faire */ });
+            }
+
+            if (wasControlled) {
+                window.setTimeout(function () {
+                    location.reload();
+                }, 200);
+            }
+            return;
+        }
+
+        navigator.serviceWorker.register('sw.js').then(function () {
+            // Le navigateur peut réutiliser un worker déjà installé sans
+            // rejouer install : on lui demande de vérifier son précache.
+            navigator.serviceWorker.ready.then(function (registration) {
+                if (registration.active) registration.active.postMessage({ type: 'REPAIR' });
+            });
+        }).catch(function () {
+            /* Refusé (iframe, en-têtes, navigation privée) : l'application
+               fonctionne exactement comme avant. */
+        });
+    }
+
+    registerServiceWorker();
 })();

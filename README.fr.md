@@ -298,6 +298,31 @@ détection est une différence de blocs sur une image 320 × 240 (`MotionDetecto
 pas un modèle de neurones : aucun téléchargement, aucune chauffe, et en cas
 d’échec cela ne fait rien plutôt que n’importe quoi.
 
+### Hors ligne (PWA)
+
+`sw.js` précache 14 fichiers — la page, les quatre scripts, la feuille de style,
+le logo, les icônes et `offline.html` — pour que l’éditeur s’ouvre sans réseau
+dès qu’il a été visité une fois. Deux stratégies, et deux seulement :
+
+| Requête | Stratégie | Pourquoi |
+|---|---|---|
+| navigation | réseau d’abord, 700 ms au maximum si une copie existe | la page doit être fraîche ; un portail captif ne doit pas la bloquer |
+| scripts, styles, images, polices | cache d’abord, rafraîchi en arrière-plan | démarrage instantané ; la mise à jour arrive à la visite suivante |
+
+`/api/`, `proxy.php`, les requêtes non-GET, les requêtes `Range` et les autres
+origines ne sont jamais interceptés. Mesuré serveur éteint : **920 ms** entre le
+clic et un éditeur utilisable, logo et 36 presets compris.
+
+Le précache est revérifié à chaque visite (message `REPAIR`) et reconstruit si un
+cache a été vidé : un worker actif mais vide est réparé au lieu de laisser
+l’application cassée. Supprimer une version consiste à incrémenter `VERSION` dans
+`sw.js` ; les anciens caches sont supprimés à l’activation.
+
+Pour le désactiver pendant le développement, ouvrir l’éditeur avec `?sw=off` :
+le worker est désinscrit, les caches purgés, la page rechargée une fois.
+L’enregistrement est ignoré en `file://` et sur un hôte HTTP quelconque :
+ouvrir `index.html` depuis le disque se comporte donc exactement comme avant.
+
 ---
 
 ## Version Astro
@@ -406,7 +431,6 @@ vers l’export JS/HTML au lieu d’échouer en silence. Le contrôle caméra ex
 
 - **Version bureau** (Tauri) : le même moteur, hors ligne, avec des dialogues de
   fichiers natifs.
-- **PWA hors ligne** : service worker précachant le moteur (le manifeste est prêt).
 - **Courbes par propriété dans la timeline** : un éditeur de courbe par segment, et
   pas seulement le sélecteur global.
 - **Rust : export vidéo** via un vrai encodeur, pour dépasser le plafond 4K de

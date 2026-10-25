@@ -289,6 +289,31 @@ A webcam panel moves the selected shape with hand motion. Detection is a
 block-difference over a 320 × 240 frame (`MotionDetector`), not a neural model:
 no download, no warm-up, and it degrades to nothing rather than to nonsense.
 
+### Offline (PWA)
+
+`sw.js` precaches 14 files — the page, the four scripts, the stylesheet, the
+logo, the icons and `offline.html` — so the editor opens without a network once
+it has been visited. Two strategies, and two only:
+
+| Request | Strategy | Why |
+|---|---|---|
+| navigation | network first, 700 ms at most when a copy exists | the page must be fresh; a captive portal must not block it |
+| scripts, styles, images, fonts | cache first, refreshed in the background | instant start; the update lands on the next visit |
+
+`/api/`, `proxy.php`, non-GET requests, `Range` requests and other origins are
+never intercepted. Measured on a dead server: **920 ms** from click to a usable
+editor, logo and 36 presets included.
+
+The precache is re-verified on every visit (`REPAIR` message) and rebuilt if a
+cache was cleared — an active worker with an empty cache is repaired instead of
+leaving the app broken. Deleting a version means incrementing `VERSION` in
+`sw.js`; the old caches are dropped on activation.
+
+To turn it off while developing, load the editor with `?sw=off`: it unregisters
+the worker, purges the caches and reloads once. The registration itself is
+skipped on `file://` and on plain HTTP hosts, so opening `index.html` straight
+from disk behaves exactly as before.
+
 ---
 
 ## Astro version
@@ -395,7 +420,6 @@ points at the JS/HTML export instead of failing silently. Webcam control needs
 ## Roadmap
 
 - **Desktop build** (Tauri): the same engine, offline, with native file dialogs.
-- **Offline PWA**: service worker precaching the engine (the manifest is ready).
 - **Per-property curves in the timeline**: a curve editor per segment, not only
   the global selector.
 - **Rust: video export** via a real encoder, to move beyond `MediaRecorder`’s 4K

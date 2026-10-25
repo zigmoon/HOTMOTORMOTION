@@ -48,6 +48,13 @@ jobs:
           test -f astro/dist/server/entry.mjs
           test -f astro/dist/client/assets/motion/js/bundle.js
           test -f astro/dist/client/assets/motion/css/style.css
+          test -f astro/dist/client/sw.js
+          test -f astro/dist/client/offline.html
+      - name: Le service worker régénéré pointe vers le moteur
+        run: |
+          grep -q "'/assets/motion/js/bundle.js'" astro/public/sw.js
+          grep -q "'/editor'" astro/public/sw.js
+          grep -q "/assets/motion/" astro/public/offline.html
       - name: Démarrer et interroger le serveur
         run: |
           cd astro
@@ -60,6 +67,8 @@ jobs:
           curl -fsS http://127.0.0.1:8910/ | grep -q "HOT MOTOR MOTION"
           curl -fsS http://127.0.0.1:8910/editor | grep -q "app-container"
           curl -fsS http://127.0.0.1:8910/sitemap.xml | grep -q "/editor"
+          curl -fsS http://127.0.0.1:8910/sw.js | grep -q "'/assets/motion/js/bundle.js'"
+          curl -fsS http://127.0.0.1:8910/offline.html | grep -q "Vous êtes hors ligne"
           test "$(curl -s -o /dev/null -w '%{http_code}' http://127.0.0.1:8910/assets/motion/js/bundle.js)" = "200"
 
   rust:

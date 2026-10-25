@@ -95,10 +95,33 @@ function main() {
     }
   }
 
+  // Page de secours et service worker : les mêmes sources que l'application,
+  // avec les chemins du site Astro (moteur sous /assets/motion/, éditeur sur
+  // /editor, manifeste /manifest.webmanifest).
+  const offlineSrc = path.join(appRoot, 'offline.html');
+  if (fs.existsSync(offlineSrc)) {
+    const offline = fs
+      .readFileSync(offlineSrc, 'utf8')
+      .replace(/(src|href)="(js|css|img|icons)\//g, `$1="${ASSET_BASE}$2/`)
+      .replace('href="./"', 'href="/editor"');
+    fs.writeFileSync(path.join(publicRoot, 'offline.html'), offline, 'utf8');
+  }
+
+  const swSrc = path.join(appRoot, 'sw.js');
+  if (fs.existsSync(swSrc)) {
+    const sw = fs
+      .readFileSync(swSrc, 'utf8')
+      .replace(/'(js|css|img|icons)\//g, `'${ASSET_BASE}$1/`)
+      .replace("'./'", "'/editor'")
+      .replace("'manifest.json'", "'/manifest.webmanifest'");
+    fs.writeFileSync(path.join(publicRoot, 'sw.js'), sw, 'utf8');
+  }
+
   const kb = (bytes) => (bytes / 1024).toFixed(0) + ' Ko';
   console.log(`[motion-astro] moteur synchronisé → public/assets/motion/ (${kb(dirSize(path.join(assetsRoot, 'js')))} de JavaScript)`);
   console.log(`[motion-astro] shell éditeur → src/generated/editor-shell.html (${(body.length / 1024).toFixed(1)} Ko)`);
   console.log(`[motion-astro] scripts → src/generated/editor-scripts.html (${scripts.length} fichiers)`);
+  console.log(`[motion-astro] hors ligne → public/sw.js + public/offline.html`);
 }
 
 main();

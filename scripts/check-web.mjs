@@ -196,6 +196,71 @@ if (brand && /<span/.test(brand[0])) {
   fail('index.html : la marque ne doit pas porter de libellé à côté du logo');
 }
 
+// ── 7. Hors ligne : service worker et page de secours ──────────────────────
+
+const sw = read('sw.js');
+try {
+  new Function(sw);
+} catch (error) {
+  fail(`sw.js : ${error.message}`);
+}
+
+if (!/const VERSION = '[^']+'/.test(sw)) {
+  fail('sw.js : constante VERSION absente (le cache ne serait jamais purgé)');
+}
+if (!sw.includes("'/api/'") && !sw.includes('"/api/"')) {
+  fail('sw.js : les routes /api/ ne sont pas exclues du cache');
+}
+if (!/proxy\\\.php/.test(sw)) {
+  fail('sw.js : proxy.php n’est pas exclu du cache');
+}
+if (!/request\.method !== 'GET'/.test(sw)) {
+  fail('sw.js : les requêtes non-GET doivent être ignorées');
+}
+
+const precacheBlock = sw.match(/const PRECACHE = \[([\s\S]*?)\];/);
+if (!precacheBlock) {
+  fail('sw.js : tableau PRECACHE introuvable');
+} else {
+  const precache = [...precacheBlock[1].matchAll(/'([^']+)'/g)].map((match) => match[1]);
+
+  if (!precache.length) fail('sw.js : PRECACHE est vide');
+
+  for (const entry of precache) {
+    // './' désigne la page d'entrée elle-même.
+    const relative = entry === './' ? 'index.html' : entry;
+    if (!fs.existsSync(path.join(root, relative))) {
+      fail(`sw.js précache ${entry}, fichier absent`);
+    }
+  }
+
+  if (!precache.includes('offline.html')) {
+    fail('sw.js : offline.html doit être précaché (secours des navigations)');
+  }
+  if (!scripts.every((file) => precache.includes(file))) {
+    const missing = scripts.filter((file) => !precache.includes(file));
+    fail(`sw.js : scripts non précachés — ${missing.join(', ')}`);
+  }
+  note(`${precache.length} fichiers précachés, tous présents`);
+}
+
+const offline = read('offline.html');
+if (!/^<!doctype html>/i.test(offline.trim())) fail('offline.html : doctype manquant');
+if (!/<html[^>]+lang="fr"/.test(offline)) fail('offline.html : attribut lang manquant');
+for (const match of offline.matchAll(/(?:src|href)="((?!https?:|data:|#|\.\/)[^"]+)"/g)) {
+  if (!fs.existsSync(path.join(root, match[1]))) {
+    fail(`offline.html référence ${match[1]}, fichier absent`);
+  }
+}
+
+const shell = read('js/shell.js');
+if (!/serviceWorker\.register\('sw\.js'\)/.test(shell)) {
+  fail('js/shell.js : le service worker n’est pas enregistré');
+}
+if (!/sw'\) === 'off'/.test(shell)) {
+  fail('js/shell.js : le mode de dépannage ?sw=off a disparu');
+}
+
 // ── Rapport ────────────────────────────────────────────────────────────────
 
 for (const line of notes) console.log(`  · ${line}`);

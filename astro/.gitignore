@@ -6,7 +6,10 @@ dist/
 !.env.example
 
 # Copies générées par `npm run sync` (scripts/sync-engine.mjs) : la source de
-# vérité reste ../js, ../css, ../img, ../icons et ../index.html.
+# vérité reste ../js, ../css, ../img, ../icons, ../index.html, ../sw.js et
+# ../offline.html.
 public/assets/motion/
 public/manifest.webmanifest
+public/sw.js
+public/offline.html
 src/generated/

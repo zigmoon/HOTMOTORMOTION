@@ -18,7 +18,10 @@ Une seule source pour le moteur : `../index.html`, `../js`, `../css`, `../img`,
    s’oublie quand on maintient deux listes ;
 4. réécrit les chemins relatifs (`js/`, `css/`, `img/`, `icons/`) vers
    `/assets/motion/…` ;
-5. adapte le manifeste PWA pour que l’entrée soit `/editor`.
+5. adapte le manifeste PWA pour que l’entrée soit `/editor` ;
+6. recopie `sw.js` et `offline.html` en réécrivant leurs chemins : le service
+   worker précache `/editor`, `/manifest.webmanifest` et `/assets/motion/…`,
+   et la page de secours renvoie vers `/editor`.
 
 Le script est lancé automatiquement par `postinstall`, `dev` et `build`.
 Après une modification de `index.html` ou d’un fichier du moteur, relancez
@@ -68,6 +71,8 @@ envoie sa propre clé dans l’en-tête `x-provider-key`.
 | `/api/health` | état du service |
 | `/api/ai` | relais vers les API d’IA (hôtes en liste blanche) |
 | `/sitemap.xml` | sitemap |
+| `/sw.js` | service worker (copie réécrite de `../sw.js`) |
+| `/offline.html` | page de secours hors ligne |
 
 ## Notes
 
@@ -75,5 +80,6 @@ envoie sa propre clé dans l’en-tête `x-provider-key`.
   100 % statique : `output: 'static'`, retirer l’adaptateur et `src/pages/api/`.
 - Le relais `/api/ai` n’accepte que six hôtes HTTPS connus et ne transmet que
   trois en-têtes : sans cette liste blanche, il devient un proxy ouvert (SSRF).
-- `public/assets/motion/` et `src/generated/` sont ignorés par Git : ce sont des
-  copies, régénérées à chaque build.
+- `public/assets/motion/`, `public/sw.js`, `public/offline.html` et
+  `src/generated/` sont ignorés par Git : ce sont des copies, régénérées à
+  chaque build.
